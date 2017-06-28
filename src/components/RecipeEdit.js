@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Actions } from 'react-native-router-flux';
 
 import { View } from 'react-native';
 import { Card, CardSection, Button } from './common';
@@ -11,8 +12,8 @@ class RecipeEdit extends Component {
                 <Card>
                     <RecipeForm />
                     <CardSection>
-                        <Button>Save</Button>
-                        <Button>Cancel</Button>
+                        <Button onPress={() => Actions.pop()}>Save</Button>
+                        <Button onPress={() => Actions.pop()}>Cancel</Button>
                     </CardSection>
                 </Card>
             </View>

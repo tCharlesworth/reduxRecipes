@@ -11,18 +11,11 @@ import { FirebaseConfig }   from './config';
 
 import Router from './Router';
 
+firebase.initializeApp(FirebaseConfig);
+
 class App extends Component {
     constructor(props) {
         super(props);
-        this.initializeApp();
-    }
-    initializeApp() {
-        if( !firebase.app.App ) {
-            firebase.initializeApp(FirebaseConfig);
-        }
-    }
-    componentWillMount() {
-        this.initializeApp();
     }
     render() {
         reduxStore = createStore(reducers, {}, applyMiddleware(ReduxThunk));
