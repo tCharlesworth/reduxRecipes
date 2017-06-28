@@ -1,6 +1,5 @@
 import { 
-    CREATE_EMAIL_CHANGED, 
-    CREATE_PASSWORD_CHANGED,
+    USER_FORM_UPDATE,
     CREATE_USER_STARTED,
     CREATE_USER_SUCCESS,
     CREATE_USER_FAILURE
@@ -9,16 +8,16 @@ import {
 const INITIAL_STATE = {
     email: '',
     password: '',
+    username: '',
+    terms: false,
     loading: false,
     error: ''
 };
 
-export default SignupReducer = (state = INITIAL_STATE, action) => {
+export default UserFormReducer = (state = INITIAL_STATE, action) => {
     switch(action.type) {
-        case CREATE_EMAIL_CHANGED:
-            return { ...state, email: action.payload };
-        case CREATE_PASSWORD_CHANGED:
-            return { ...state, password: action.payload };
+        case USER_FORM_UPDATE:
+            return { ...state, [action.payload.prop]: action.payload.val };
         case CREATE_USER_STARTED:
             return { ...state, loading: true, error: '' };
         case CREATE_USER_SUCCESS:

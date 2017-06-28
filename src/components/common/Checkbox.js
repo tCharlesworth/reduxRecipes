@@ -1,13 +1,14 @@
 import React from 'react';
 import { View, Text, Switch } from 'react-native';
 
-const Checkbox = ({label, onValueChange}) => {
+const Checkbox = ({label, onValueChange, value}) => {
     const { containerStyles, labelStyles } = styles;
     return (
         <View style={containerStyles}>
             <Text style={labelStyles}>{label}</Text>
             <Switch
-                onValueChange={onValueChange} />
+                onValueChange={onValueChange}
+                value={value} />
         </View>
     );
 };

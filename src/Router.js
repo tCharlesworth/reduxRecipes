@@ -1,8 +1,9 @@
 import React from 'react';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 
-import RecipeForm from './components/RecipeForm';
+import RecipeCreate from './components/RecipeCreate';
 import RecipeView from './components/RecipeView';
+import RecipeEdit from './components/RecipeEdit';
 import RecipeList from './components/RecipeList';
 import UserCreate from './components/UserCreate';
 import LoginForm  from './components/LoginForm';
@@ -20,12 +21,18 @@ const RouterComponent = () => {
                     component={ RecipeList } 
                     title="Recipe List"
                     rightTitle="New"
-                    onRight={ () => Actions.recipeForm() } />
-                <Scene key="recipeForm" component={ RecipeForm } title="Recipe Form" />
+                    onRight={ () => Actions.recipeCreate() } />
+                <Scene key="recipeCreate" component={ RecipeCreate } title="New Recipe" />
                 <Scene 
                     key="recipeView" 
                     component={ RecipeView } 
-                    title="Recipe View" />
+                    title="Recipe View"
+                    rightTitle="Edit"
+                    onRight={ () => Actions.recipeEdit() } />
+                <Scene
+                    key="recipeEdit"
+                    component={ RecipeEdit }
+                    title="Edit Recipe" />
             </Scene>
         </Router>
     );

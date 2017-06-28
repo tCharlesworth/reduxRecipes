@@ -1,20 +1,13 @@
 import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
-import { CREATE_EMAIL_CHANGED, CREATE_PASSWORD_CHANGED, CREATE_USER_STARTED, CREATE_USER_SUCCESS, CREATE_USER_FAILURE } from './types';
+import { USER_FORM_UPDATE, CREATE_USER_STARTED, CREATE_USER_SUCCESS, CREATE_USER_FAILURE } from './types';
 
-export const createEmailChanged = (email) => {
+export const userFormUpdate = (prop, value) => {
     return {
-        type: CREATE_EMAIL_CHANGED,
-        payload: email
+        type: USER_FORM_UPDATE,
+        payload: { prop, value }
     };
-};
-
-export const createPasswordChanged = (password) => {
-    return {
-        type: CREATE_PASSWORD_CHANGED,
-        payload: password
-    };
-};
+}
 
 export const createUser = ({ email, password }) => {
     return (dispatch) => {
