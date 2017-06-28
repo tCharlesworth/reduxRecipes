@@ -12,7 +12,7 @@ class RecipeListItem extends Component {
         const { name } = this.props.recipe;
         return (
             <CardSection>
-                <TouchableHighlight style={{flex: 1}} underlayColor="#f5f5f5" onPress={this.onPressHandler.bind(this)}>
+                <TouchableHighlight style={styles.containerStyles} underlayColor="#f5f5f5" onPress={this.onPressHandler.bind(this)}>
                     <View style={{flex: 1}}>
                         <Text style={styles.textStyles}>{name}</Text>
                     </View>
@@ -23,6 +23,10 @@ class RecipeListItem extends Component {
 };
 
 const styles = {
+    containerStyles: {
+        padding: 20,
+        flex: 1
+    },
     textStyles: {
         fontSize: 20,
         paddingLeft: 10,
