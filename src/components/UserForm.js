@@ -12,7 +12,7 @@ class UserForm extends Component {
                 <CardSection>
                     <TextField
                         label="Email"
-                        placeholder="test@gmail.com"
+                        placeholder="example@gmail.com"
                         onChangeText={this.props.userFormUpdate.bind(this, 'email')}
                         autoCapitalize="none"
                         keyboardType="email-address"

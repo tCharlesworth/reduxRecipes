@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
+
+import { updateRecipe } from '../actions';
 
 import { View } from 'react-native';
 import { Card, CardSection, Button } from './common';
@@ -17,8 +20,8 @@ class RecipeEdit extends Component {
                     </CardSection>
                 </Card>
             </View>
-        )
+        );
     }
 }
 
-export default RecipeEdit;
+export default connect(null, { updateRecipe })(RecipeEdit);

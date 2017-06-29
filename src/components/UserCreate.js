@@ -11,10 +11,11 @@ import UserForm from './UserForm';
 class SignupForm extends Component {
     onCreateUser() {
         const { email, password, username } = this.props;
+        console.log("PROPS: ", this.props);
         this.props.createUser({email, password, username});
     }
     onLoginPress() {
-        Actions.pop();
+        Actions.login({type: 'reset'});
     }
     renderError() {
         if(this.props.error != '') {
@@ -62,6 +63,7 @@ const styles = {
 
 const mapStateToProps = ({ userForm }) => {
     const { error, terms, loading, email, username, password } = userForm;
+    console.log('MAPPING: ', userForm);
     return { error, terms, loading, email, username, password };
 };
 

@@ -12,4 +12,9 @@ export const CREATE_USER_FAILURE = 'create_user_failure';
 export const CREATE_USER_STARTED = 'create_user_started';
 
 export const CREATE_RECIPE_SUCCESS = 'create_recipe_success';
+export const CREATE_RECIPE_ERROR   = 'create_recipe_error';
+export const CREATE_RECIPE_STARTED = 'create_recipe_started';
 export const CREATE_RECIPE_UPDATE  = 'new_recipe_update';
+
+export const RECIPE_UPDATE_SUCCESS = 'recipe_update_success';
+export const RECIPE_UPDATE_ERROR   = 'recipe_update_error';
