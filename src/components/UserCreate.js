@@ -10,8 +10,8 @@ import UserForm from './UserForm';
 
 class SignupForm extends Component {
     onCreateUser() {
-        const { email, password } = this.props;
-        this.props.createUser({email, password});
+        const { email, password, username } = this.props;
+        this.props.createUser({email, password, username});
     }
     onLoginPress() {
         Actions.pop();
@@ -61,8 +61,8 @@ const styles = {
 };
 
 const mapStateToProps = ({ userForm }) => {
-    const { error, terms, loading } = userForm;
-    return { error, terms, loading };
+    const { error, terms, loading, email, username, password } = userForm;
+    return { error, terms, loading, email, username, password };
 };
 
 export default connect(mapStateToProps, { 
