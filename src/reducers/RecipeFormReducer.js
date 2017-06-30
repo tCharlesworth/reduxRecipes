@@ -1,4 +1,4 @@
-import { CREATE_RECIPE_SUCCESS, CREATE_RECIPE_ERROR, CREATE_RECIPE_STARTED, CREATE_RECIPE_UPDATE, 
+import { CREATE_RECIPE_SUCCESS, CREATE_RECIPE_ERROR, CREATE_RECIPE_CLEAR, CREATE_RECIPE_STARTED, CREATE_RECIPE_UPDATE, 
           SET_CURRENT_RECIPE, UPDATE_RECIPE_STARTED, UPDATE_RECIPE_ERROR, UPDATE_RECIPE_SUCCESS } from '../actions/types';
 import { Actions } from 'react-native-router-flux';
 
@@ -24,6 +24,8 @@ export default (state = INITIAL_STATE, action) => {
             return INITIAL_STATE;
         case UPDATE_RECIPE_ERROR:
             return { ...state, error: 'Error Saving Recipe'};
+        case CREATE_RECIPE_CLEAR:
+            return INITIAL_STATE;
         default:
             return state;
     }

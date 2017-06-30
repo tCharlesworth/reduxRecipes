@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
-import { RECIPE_FETCH_SUCCESS, CREATE_RECIPE_SUCCESS, CREATE_RECIPE_ERROR, CREATE_RECIPE_STARTED, CREATE_RECIPE_UPDATE, 
+import { RECIPE_FETCH_SUCCESS, CREATE_RECIPE_SUCCESS, CREATE_RECIPE_ERROR, CREATE_RECIPE_CLEAR, CREATE_RECIPE_STARTED, CREATE_RECIPE_UPDATE, 
          SET_CURRENT_RECIPE, UPDATE_RECIPE_ERROR, UPDATE_RECIPE_STARTED, UPDATE_RECIPE_SUCCESS } from './types';
 
 export const recipesFetch = () => {
@@ -48,4 +48,8 @@ export const setCurrentRecipe = ({name, ingredients, directions, uid}) => {
         type: SET_CURRENT_RECIPE,
         payload: {name, ingredients, directions, uid} 
     };
+};
+
+export const clearRecipeForm = () => {
+    return { type: CREATE_RECIPE_CLEAR };
 }

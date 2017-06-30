@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { recipeCreate } from '../actions';
+import { recipeCreate, clearRecipeForm } from '../actions';
 
 import { ScrollView, Text } from 'react-native';
 import { Card, Button, CardSection, Spinner } from './common';
 import RecipeForm from './RecipeForm';
 
 class RecipeCreate extends Component {
+    componentWillMount() {
+        this.props.clearRecipeForm();
+    }
 
     onRecipeCreate() {
         this.props.recipeCreate(this.props.name, this.props.ingredients, this.props.directions);
@@ -63,4 +66,4 @@ const mapStateToProps = ({ recipeForm }) => {
     return { name, ingredients, directions, error, loading };
 }
 
-export default connect(mapStateToProps, { recipeCreate })(RecipeCreate);
+export default connect(mapStateToProps, { recipeCreate, clearRecipeForm })(RecipeCreate);
