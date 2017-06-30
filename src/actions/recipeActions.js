@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
-import { RECIPE_FETCH_SUCCESS, CREATE_RECIPE_SUCCESS, CREATE_RECIPE_STARTED, CREATE_RECIPE_UPDATE, RECIPE_UPDATE_SUCCESS, RECIPE_UPDATE_ERROR } from './types';
+import { RECIPE_FETCH_SUCCESS, CREATE_RECIPE_SUCCESS, CREATE_RECIPE_ERROR, CREATE_RECIPE_STARTED, CREATE_RECIPE_UPDATE, RECIPE_UPDATE_SUCCESS, RECIPE_UPDATE_ERROR } from './types';
 
 export const recipesFetch = () => {
     const { currentUser } = firebase.auth();

@@ -6,8 +6,8 @@ export default (state = INITIAL_STATE, action) => {
     switch(action.type) {
         case RECIPE_FETCH_SUCCESS:
             return { recipes: action.payload };
-        case CREATE_RECIPE_SUCCESS:
-            return {recipes: [...recipes, action.payload]}
+        // case CREATE_RECIPE_SUCCESS: POSSIBLY NOT NEED. BECAUSE = FIREBASE
+        //     return {recipes: [...state.recipes, action.payload]}
         default:
             return state;
     }
