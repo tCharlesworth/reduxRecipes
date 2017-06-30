@@ -1,6 +1,7 @@
 import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
-import { RECIPE_FETCH_SUCCESS, CREATE_RECIPE_SUCCESS, CREATE_RECIPE_ERROR, CREATE_RECIPE_STARTED, CREATE_RECIPE_UPDATE, RECIPE_UPDATE_SUCCESS, RECIPE_UPDATE_ERROR } from './types';
+import { RECIPE_FETCH_SUCCESS, CREATE_RECIPE_SUCCESS, CREATE_RECIPE_ERROR, CREATE_RECIPE_STARTED, CREATE_RECIPE_UPDATE, 
+         SET_CURRENT_RECIPE, UPDATE_RECIPE_ERROR, UPDATE_RECIPE_STARTED, UPDATE_RECIPE_SUCCESS } from './types';
 
 export const recipesFetch = () => {
     const { currentUser } = firebase.auth();
@@ -31,12 +32,20 @@ export const newRecipeUpdate = (prop, value) => {
     };
 };
 
-export const updateRecipe = ({name, ingredients, directions, id}) => {
+export const updateRecipe = ({name, ingredients, directions, uid}) => {
     const { currentUser } = firebase.auth();
     return (dispatch) => {
-        firbase.database().ref(`/users/${currentUser.uid}/recipes/${id}`)
+        dispatch({type: UPDATE_RECIPE_STARTED});
+        firebase.database().ref(`/users/${currentUser.uid}/recipes/${uid}`)
             .set({name, ingredients, directions})
-            .then(()=>{ dispatch({type: RECIPE_UPDATE_SUCCESS}); Actions.pop(); })
-            .catch((err)=>{ dispatch({type: RECIPE_UPDATE_ERROR, payload: err}); });
+            .then(()=>{ dispatch({type: UPDATE_RECIPE_SUCCESS}); Actions.pop(); })
+            .catch((err)=>{ dispatch({type: UPDATE_RECIPE_ERROR, payload: err}); });
     };
 };
+
+export const setCurrentRecipe = ({name, ingredients, directions, uid}) => {
+    return {
+        type: SET_CURRENT_RECIPE,
+        payload: {name, ingredients, directions, uid} 
+    };
+}

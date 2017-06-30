@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { View, Text, TouchableHighlight } from 'react-native';
+
+import { setCurrentRecipe } from '../actions';
 
 import { CardSection } from './common';
 
 class RecipeListItem extends Component {
     onPressHandler() {
         Actions.recipeView({recipe: this.props.recipe});
+        this.props.setCurrentRecipe(this.props.recipe);
     }
     render() {
         const { name } = this.props.recipe;
@@ -34,4 +38,4 @@ const styles = {
     }
 };
 
-export default RecipeListItem;
+export default connect(null, { setCurrentRecipe })(RecipeListItem);

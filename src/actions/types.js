@@ -18,3 +18,8 @@ export const CREATE_RECIPE_UPDATE  = 'new_recipe_update';
 
 export const RECIPE_UPDATE_SUCCESS = 'recipe_update_success';
 export const RECIPE_UPDATE_ERROR   = 'recipe_update_error';
+
+export const SET_CURRENT_RECIPE = 'set_current_recipe';
+export const UPDATE_RECIPE_STARTED = 'update_recipe_started';
+export const UPDATE_RECIPE_ERROR   = 'update_recipe_error';
+export const UPDATE_RECIPE_SUCCESS = 'update_recipe_success';

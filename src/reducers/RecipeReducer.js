@@ -1,13 +1,13 @@
-import { RECIPE_FETCH_SUCCESS, CREATE_RECIPE_SUCCESS } from '../actions/types';
+import { RECIPE_FETCH_SUCCESS, CREATE_RECIPE_SUCCESS, SET_CURRENT_RECIPE } from '../actions/types';
 
-const INITIAL_STATE = { recipes: [] };
+const INITIAL_STATE = { recipes: [], currentRecipe: {} };
 
 export default (state = INITIAL_STATE, action) => {
     switch(action.type) {
         case RECIPE_FETCH_SUCCESS:
-            return { recipes: action.payload };
-        // case CREATE_RECIPE_SUCCESS: POSSIBLY NOT NEED. BECAUSE = FIREBASE
-        //     return {recipes: [...state.recipes, action.payload]}
+            return { ...state, recipes: action.payload };
+        case SET_CURRENT_RECIPE:
+            return { ...state, currentRecipe: action.payload };
         default:
             return state;
     }
