@@ -24,3 +24,7 @@ export const SET_CURRENT_RECIPE = 'set_current_recipe';
 export const UPDATE_RECIPE_STARTED = 'update_recipe_started';
 export const UPDATE_RECIPE_ERROR   = 'update_recipe_error';
 export const UPDATE_RECIPE_SUCCESS = 'update_recipe_success';
+
+export const DELETE_RECIPE_STARTED = 'delete_recipe_started';
+export const DELETE_RECIPE_SUCCESS = 'delete_recipe_success';
+export const DELETE_RECIPE_ERROR   = 'delete_recipe_error';

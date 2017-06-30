@@ -1,7 +1,8 @@
 import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
 import { RECIPE_FETCH_SUCCESS, CREATE_RECIPE_SUCCESS, CREATE_RECIPE_ERROR, CREATE_RECIPE_CLEAR, CREATE_RECIPE_STARTED, CREATE_RECIPE_UPDATE, 
-         SET_CURRENT_RECIPE, UPDATE_RECIPE_ERROR, UPDATE_RECIPE_STARTED, UPDATE_RECIPE_SUCCESS } from './types';
+         SET_CURRENT_RECIPE, UPDATE_RECIPE_ERROR, UPDATE_RECIPE_STARTED, UPDATE_RECIPE_SUCCESS,
+        DELETE_RECIPE_STARTED, DELETE_RECIPE_SUCCESS, DELETE_RECIPE_ERROR } from './types';
 
 export const recipesFetch = () => {
     const { currentUser } = firebase.auth();
@@ -52,4 +53,10 @@ export const setCurrentRecipe = ({name, ingredients, directions, uid}) => {
 
 export const clearRecipeForm = () => {
     return { type: CREATE_RECIPE_CLEAR };
+}
+
+export const deleteRecipe = (uid) => {
+    return (dispatch) => {
+        dispatch({type: DELETE_RECIPE_STARTED});
+    };
 }

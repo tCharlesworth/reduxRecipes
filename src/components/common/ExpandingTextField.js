@@ -15,7 +15,7 @@ class ExpandingTextField extends Component{
         // Adjust Height
         const { contentSize, text } = event.nativeEvent;
         this.setState({
-            height: contentSize.height < DEFAULT_HEIGHT ? DEFAULT_HEIGHT : contentSize.height
+            height: contentSize.height < DEFAULT_HEIGHT ? DEFAULT_HEIGHT : contentSize.height + 10
         });
         // Call on change text from props if it exists
         this.props.onChangeText ? this.props.onChangeText(text) : undefined;

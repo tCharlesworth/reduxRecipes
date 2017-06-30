@@ -13,6 +13,9 @@ class RecipeEdit extends Component {
         const { name, directions, ingredients, uid } = this.props;
         this.props.updateRecipe({name, directions, ingredients, uid});
     }
+    onDeletePress() {
+        this.props.deleteRecipe(this.props.uid);
+    }
     renderButtons() {
         if(this.props.error && this.props.error != '') {
             return <CardSection><Text style={styles.errorTextStyles}>{this.props.error}</Text></CardSection>;
@@ -22,6 +25,7 @@ class RecipeEdit extends Component {
             return (
                 <CardSection>
                     <Button onPress={this.onSavePress.bind(this)}>Save</Button>
+                    <Button onPress={this.onDeletePress.bind(this)}>Delete</Button>
                     <Button onPress={() => Actions.pop()}>Cancel</Button>
                 </CardSection>
             );
