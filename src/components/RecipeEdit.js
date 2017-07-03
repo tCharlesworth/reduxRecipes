@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 
-import { updateRecipe } from '../actions';
+import { updateRecipe, deleteRecipe } from '../actions';
 
 import { View, Text } from 'react-native';
 import { Card, CardSection, Button, Spinner } from './common';
@@ -56,4 +56,4 @@ const mapStateToProps = ({recipeForm, recipes}) => {
     return { name, directions, ingredients, uid };
 };
 
-export default connect(mapStateToProps, { updateRecipe })(RecipeEdit);
+export default connect(mapStateToProps, { updateRecipe, deleteRecipe })(RecipeEdit);

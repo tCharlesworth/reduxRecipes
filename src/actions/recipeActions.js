@@ -56,7 +56,15 @@ export const clearRecipeForm = () => {
 }
 
 export const deleteRecipe = (uid) => {
+    const { currentUser } = firebase.auth();
     return (dispatch) => {
         dispatch({type: DELETE_RECIPE_STARTED});
+        firebase.database().ref(`/users/${currentUser.uid}/recipes/${uid}`)
+            .remove()
+            .then(() => {
+                dispatch({type: DELETE_RECIPE_SUCCESS});
+                Actions.list({type: 'reset'});
+            })
+            .catch((error) => dispatch({type: DELETE_RECIPE_ERROR, payload: error}));
     };
 }

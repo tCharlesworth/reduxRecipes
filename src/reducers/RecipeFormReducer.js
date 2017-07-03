@@ -32,7 +32,6 @@ export default (state = INITIAL_STATE, action) => {
         case DELETE_RECIPE_ERROR:
             return { ...state, loading: false, error: 'Error deleting recipe'};
         case DELETE_RECIPE_SUCCESS:
-            Actions.list({type: 'reset'});
             return INITIAL_STATE;
         default:
             return state;
