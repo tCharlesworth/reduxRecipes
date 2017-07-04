@@ -4,7 +4,7 @@ import { Actions } from 'react-native-router-flux';
 
 import { updateRecipe, deleteRecipe } from '../actions';
 
-import { View, Text } from 'react-native';
+import { View, Text, Alert } from 'react-native';
 import { Card, CardSection, Button, Spinner } from './common';
 import RecipeForm from './RecipeForm';
 
@@ -14,7 +14,14 @@ class RecipeEdit extends Component {
         this.props.updateRecipe({name, directions, ingredients, uid});
     }
     onDeletePress() {
-        this.props.deleteRecipe(this.props.uid);
+        Alert.alert(
+            'Delete Recipe', 
+            `Are you sure you want to delete ${this.props.name || 'unknown'}?`,
+            [
+                {text: 'Cancel', onPress: () => {}},
+                {text: 'Delete', onPress: () => { this.props.deleteRecipe(this.props.uid); }}
+            ]);
+        // Stuff
     }
     renderButtons() {
         if(this.props.error && this.props.error != '') {
