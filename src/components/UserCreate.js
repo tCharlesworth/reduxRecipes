@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 
 import { View, Text } from 'react-native';
+import { AsyncStorage } from 'react-native';
 import { Card, CardSection, TextField, Spinner, Button, Checkbox } from './common';
 import UserForm from './UserForm';
 

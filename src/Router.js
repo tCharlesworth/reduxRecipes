@@ -8,12 +8,22 @@ import RecipeList from './components/RecipeList';
 import UserCreate from './components/UserCreate';
 import LoginForm  from './components/LoginForm';
 
+import firebase   from 'firebase';
+import { AsyncStorage } from 'react-native';
+import { StorageConfig } from './config';
+
+const onSignOut = () => {
+    firebase.auth().signOut();
+    AsyncStorage.removeItem(StorageConfig.userDataKey);
+    Actions.auth({type: 'reset'});
+}
+
 const RouterComponent = () => {
     return (
         <Router sceneStyle={{ paddingTop: 60 }}>
             <Scene key="auth" initial>
-                <Scene key="login"  component={ LoginForm } title="Login" />
                 <Scene key="signup" component={ UserCreate } title="Signup" />
+                <Scene key="login"  component={ LoginForm } title="Login" />
             </Scene>
             <Scene key="main">
                 <Scene 
@@ -21,7 +31,9 @@ const RouterComponent = () => {
                     component={ RecipeList } 
                     title="Recipe List"
                     rightTitle="New"
-                    onRight={ () => Actions.recipeCreate() } />
+                    onRight={ () => Actions.recipeCreate() }
+                    leftTitle="Logout"
+                    onLeft={ () => onSignOut() } />
                 <Scene key="recipeCreate" component={ RecipeCreate } title="New Recipe" />
                 <Scene 
                     key="recipeView" 

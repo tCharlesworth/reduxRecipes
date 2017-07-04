@@ -2,10 +2,18 @@ import React, { Component } from 'react';
 import { Text } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
-import { loginEmailChanged, loginPasswordChanged, loginUser } from '../actions';
+import { loginEmailChanged, loginPasswordChanged, loginUser, loginUserWithToken } from '../actions';
 import { Card, CardSection, TextField, Button, Spinner } from './common';
 
 class LoginForm extends Component {
+    componentWillMount() {
+        if(this.props.authWithToken) {
+            console.log('token login prop found');
+            this.props.loginUserWithToken();
+        } else {
+            console.log('token login prop NOT found');
+        }
+    }
     onEmailChange(newText) {
         this.props.loginEmailChanged(newText);
     }
@@ -84,5 +92,5 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, { 
-    loginEmailChanged, loginPasswordChanged, loginUser 
+    loginEmailChanged, loginPasswordChanged, loginUser, loginUserWithToken
 })(LoginForm);
