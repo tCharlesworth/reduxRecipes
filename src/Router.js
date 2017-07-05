@@ -11,11 +11,12 @@ import Splashscreen from './components/Splashscreen';
 
 import firebase         from 'firebase';
 import { AsyncStorage } from 'react-native';
+import { StorageConfig } from './config';
 
 const onSignOut = () => {
     firebase.auth().signOut();
     AsyncStorage.removeItem(StorageConfig.userDataKey);
-    Actions.login({type: 'reset'});
+    Actions.auth({type: 'reset'});
 };
 
 const RouterComponent = () => {

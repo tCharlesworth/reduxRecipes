@@ -1,12 +1,13 @@
 import React, { Component }   from 'react';
 import { connect }            from 'react-redux';
 import { View, Text }         from 'react-native';
+import { Spinner }            from './common';
 import { loginUserWithToken } from '../actions';
 
 
 import firebase          from 'firebase';
 import { AsyncStorage }  from 'react-native';
-import { StorageConfig } from './config';
+import { StorageConfig } from '../config';
 
 class Splashscreen extends Component {
     componentDidMount() {

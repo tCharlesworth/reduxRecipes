@@ -10,6 +10,7 @@ import { Actions }          from 'react-native-router-flux';
 import reducers             from './reducers';
 
 import Router from './Router';
+import { FirebaseConfig } from './config';
 
 firebase.initializeApp(FirebaseConfig);
 
