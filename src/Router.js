@@ -24,8 +24,8 @@ const RouterComponent = () => {
         <Router sceneStyle={{ paddingTop: 60 }}>
             <Scene key="auth" initial>
                 <Scene key="loading" component={ Splashscreen } title="Splashscreen" />
-                <Scene key="signup" component={ UserCreate } title="Signup" />
                 <Scene key="login"  component={ LoginForm } title="Login" />
+                <Scene key="signup" component={ UserCreate } title="Signup" />
             </Scene>
             <Scene key="main">
                 <Scene 
