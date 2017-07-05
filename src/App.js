@@ -8,9 +8,6 @@ import firebase             from 'firebase';
 import { Actions }          from 'react-native-router-flux';
 
 import reducers             from './reducers';
-import { FirebaseConfig,
-         StorageConfig }    from './config';
-import { loginUserWithToken } from './actions';
 
 import Router from './Router';
 
@@ -19,10 +16,6 @@ firebase.initializeApp(FirebaseConfig);
 class App extends Component {
     constructor(props) {
         super(props);
-    }
-    componentDidMount() {
-        // Auto route to login page
-        Actions.login({authWithToken: true});
     }
     render() {
         reduxStore = createStore(reducers, {}, applyMiddleware(ReduxThunk));

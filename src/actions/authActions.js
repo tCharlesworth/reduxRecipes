@@ -46,11 +46,11 @@ export const loginUserWithToken = () => {
                         .catch((error) => {
                             console.log('error using user token.', error);
                             // Could not login. Redirect to login form.
-                            Actions.login();
+                            Actions.login({type: 'reset'});
                         });
                 } else {
                     // First signin still needed. Route to the Signup Page
-                    // (CURRENTLY DEFAULT)
+                    Actions.signup({type: 'reset'});
                 }
             })
             .catch((error) => {

@@ -2,26 +2,27 @@ import React from 'react';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 
 import RecipeCreate from './components/RecipeCreate';
-import RecipeView from './components/RecipeView';
-import RecipeEdit from './components/RecipeEdit';
-import RecipeList from './components/RecipeList';
-import UserCreate from './components/UserCreate';
-import LoginForm  from './components/LoginForm';
+import RecipeView   from './components/RecipeView';
+import RecipeEdit   from './components/RecipeEdit';
+import RecipeList   from './components/RecipeList';
+import UserCreate   from './components/UserCreate';
+import LoginForm    from './components/LoginForm';
+import Splashscreen from './components/Splashscreen';
 
-import firebase   from 'firebase';
+import firebase         from 'firebase';
 import { AsyncStorage } from 'react-native';
-import { StorageConfig } from './config';
 
 const onSignOut = () => {
     firebase.auth().signOut();
     AsyncStorage.removeItem(StorageConfig.userDataKey);
-    Actions.auth({type: 'reset'});
-}
+    Actions.login({type: 'reset'});
+};
 
 const RouterComponent = () => {
     return (
         <Router sceneStyle={{ paddingTop: 60 }}>
             <Scene key="auth" initial>
+                <Scene key="loading" component={ Splashscreen } title="Splashscreen" />
                 <Scene key="signup" component={ UserCreate } title="Signup" />
                 <Scene key="login"  component={ LoginForm } title="Login" />
             </Scene>
