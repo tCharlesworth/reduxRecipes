@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { newRecipeUpdate } from '../actions';
 
 import { View } from 'react-native';
-import { CardSection, TextField, ExpandingTextField } from './common';
+import { CardSection, TextField, LargeTextField } from './common';
 
 class RecipeForm extends Component {
     render() {
@@ -18,18 +18,20 @@ class RecipeForm extends Component {
                         onChangeText={(newText) => this.props.newRecipeUpdate('name', newText) } />
                 </CardSection>
                 <CardSection>
-                    <ExpandingTextField
+                    <LargeTextField
                         label="Ingredients"
                         placeholder="1 Cup Flour..."
                         multiline
+                        returnKeyType="next"
                         value={this.props.ingredients}
                         onChangeText={ (newText) => this.props.newRecipeUpdate('ingredients', newText) } />
                 </CardSection>
                 <CardSection>
-                    <ExpandingTextField
+                    <LargeTextField
                         label="Directions"
                         placeholder="Start the oven"
                         multiline
+                        returnKeyType="done"
                         value={this.props.directions}
                         onChangeText={ (newText) => this.props.newRecipeUpdate('directions', newText) } />
                 </CardSection>
