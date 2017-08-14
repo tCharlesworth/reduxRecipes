@@ -13,7 +13,7 @@ class RecipeView extends Component {
                     </CardHeader>
                     <CardArea style={{borderBottomWidth: 0}}>
                         <SubHeading>Ingredients</SubHeading>
-                        <Text>> {this.props.recipe.ingredients || "No Ingredients"}</Text>
+                        <Text>{this.props.recipe.ingredients || "No Ingredients"}</Text>
                     </CardArea>
                     <CardArea>
                         <SubHeading>Directions</SubHeading>
