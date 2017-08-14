@@ -7,8 +7,11 @@ import { recipesFetch } from '../actions';
 import RecipeListItem from './RecipeListItem';
 
 class RecipeList extends Component {
+    constructor(props) {
+        super(props);
+        props.recipesFetch();
+    }
     componentWillMount() {
-        this.props.recipesFetch();
         this.createDataSource(this.props);
     }
 

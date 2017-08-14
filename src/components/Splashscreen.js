@@ -1,7 +1,7 @@
 import React, { Component }   from 'react';
 import { connect }            from 'react-redux';
 import { View, Text }         from 'react-native';
-import { Spinner }            from './common';
+import { Spinner, CardSection }            from './common';
 import { loginUserWithToken } from '../actions';
 
 
@@ -17,8 +17,9 @@ class Splashscreen extends Component {
         return (
             <View>
                 <Text style={styles.titleStyles}>Just Cook</Text>
-                <Spinner size="large" />
-                <Text style={styles.textStyles}>Loading...</Text>
+                <CardSection>
+                    <Spinner size="large" />
+                </CardSection>
             </View>
         );
     }
@@ -26,12 +27,9 @@ class Splashscreen extends Component {
 
 const styles = {
     titleStyles: {
-        fontSize: 20,
-        alignSelf: 'center'
-    },
-    textStyles: {
-        fontSize: 10,
-        alignSelf: 'center'
+        fontSize: 40,
+        alignSelf: 'center',
+        paddingBottom: 40
     }
 };
 
