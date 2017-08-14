@@ -29,7 +29,8 @@ const styles = {
     titleStyles: {
         fontSize: 40,
         alignSelf: 'center',
-        paddingBottom: 40
+        paddingBottom: 40,
+        marginTop: 100
     }
 };
 
