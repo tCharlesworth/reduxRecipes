@@ -12,7 +12,6 @@ import UserForm from './UserForm';
 class SignupForm extends Component {
     onCreateUser() {
         const { email, password, username } = this.props;
-        console.log("PROPS: ", this.props);
         this.props.createUser({email, password, username});
     }
     onLoginPress() {
@@ -33,9 +32,9 @@ class SignupForm extends Component {
         } else {
             return (
                 <CardSection>
-                    <Button onPress={this.onCreateUser.bind(this)}>Signup</Button>
-                    <Text style={{alignSelf: 'center'}}>or</Text>
                     <Button onPress={this.onLoginPress}>Login</Button>
+                    <Text style={{alignSelf: 'center'}}>or</Text>
+                    <Button onPress={this.onCreateUser.bind(this)}>Signup</Button>
                 </CardSection>
             );
         }
@@ -44,9 +43,9 @@ class SignupForm extends Component {
         return (
             <Card>
                 <UserForm />
-                <CardSection>
+                {/* <CardSection>
                     <Checkbox value={this.props.terms} label="Terms of Service" onValueChange={this.props.userFormUpdate.bind(this, 'terms')}/>
-                </CardSection>
+                </CardSection> */}
                 { this.renderError() }
                 { this.renderButton() }
             </Card>

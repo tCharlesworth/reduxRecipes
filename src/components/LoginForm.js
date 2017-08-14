@@ -42,9 +42,9 @@ class LoginForm extends Component {
         } else {
             return  (
                 <CardSection>
-                    <Button onPress={this.onButtonPress.bind(this)}>Login</Button>
-                    <Text style={{alignSelf: 'center'}}>or</Text>
                     <Button onPress={this.onSignupPress.bind(this)}>Signup</Button>
+                    <Text style={{alignSelf: 'center'}}>or</Text>
+                    <Button onPress={this.onButtonPress.bind(this)}>Login</Button>
                 </CardSection>
             );
         }

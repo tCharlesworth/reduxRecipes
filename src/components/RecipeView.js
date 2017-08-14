@@ -7,13 +7,13 @@ class RecipeView extends Component {
     render() {
         return (
             <ScrollView>
-                <Card>
+                <Card style={styles.cardStyles}>
                     <CardHeader>
                         { this.props.recipe.name || "Recipe Name" }
                     </CardHeader>
-                    <CardArea>
+                    <CardArea style={{borderBottomWidth: 0}}>
                         <SubHeading>Ingredients</SubHeading>
-                        <Text>{this.props.recipe.ingredients || "No Ingredients"}</Text>
+                        <Text>> {this.props.recipe.ingredients || "No Ingredients"}</Text>
                     </CardArea>
                     <CardArea>
                         <SubHeading>Directions</SubHeading>
@@ -22,6 +22,16 @@ class RecipeView extends Component {
                 </Card>
             </ScrollView>
         );
+    }
+};
+
+const styles = {
+    cardStyles: {
+        shadowColor: '#000',
+        shadowOffset: { width: 2, height: 2 },
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        elevation: 1
     }
 };
 

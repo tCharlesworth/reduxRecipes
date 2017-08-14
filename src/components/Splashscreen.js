@@ -17,7 +17,7 @@ class Splashscreen extends Component {
         return (
             <View>
                 <Text style={styles.titleStyles}>Just Cook</Text>
-                <CardSection>
+                <CardSection  style={{borderBottomWidth: 0}}>
                     <Spinner size="large" />
                 </CardSection>
             </View>
