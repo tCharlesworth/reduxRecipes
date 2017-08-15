@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { View, Text, ScrollView } from 'react-native';
 
 import { SubHeading, Card, CardArea, CardHeader } from './common';
@@ -8,9 +9,6 @@ class RecipeView extends Component {
         return (
             <ScrollView>
                 <Card style={styles.cardStyles}>
-                    <CardHeader>
-                        { this.props.recipe.name || "Recipe Name" }
-                    </CardHeader>
                     <CardArea style={{borderBottomWidth: 0}}>
                         <SubHeading>Ingredients</SubHeading>
                         <Text>{this.props.recipe.ingredients || "No Ingredients"}</Text>
@@ -35,4 +33,8 @@ const styles = {
     }
 };
 
-export default RecipeView;
+const mapStateToProps = ({recipes}) => {
+    return {recipe: recipes.currentRecipe};
+}
+
+export default connect(mapStateToProps)(RecipeView);

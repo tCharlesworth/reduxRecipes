@@ -1,6 +1,6 @@
 import { 
     LOGIN_EMAIL_CHANGED, LOGIN_PASSWORD_CHANGED, LOGIN_USER_SUCCESS, LOGIN_USER_FAILED, LOGIN_USER_STARTED } from './types';
-import { Actions } from 'react-native-router-flux';
+import { NavigationActions } from 'react-navigation';
 import firebase from 'firebase';
 import { AsyncStorage } from 'react-native';
 import { StorageConfig } from '../config';
@@ -46,11 +46,11 @@ export const loginUserWithToken = () => {
                         .catch((error) => {
                             console.log('error using user token.', error);
                             // Could not login. Redirect to login form.
-                            Actions.login({type: 'reset'});
+                            dispatch(NavigationActions.navigate({ routeName: 'AuthScreen'}));
                         });
                 } else {
                     // First signin still needed. Route to the Signup Page
-                    Actions.signup({type: 'reset'});
+                    dispatch(NavigationActions.navigate({ routeName: 'AuthScreen'}));
                 }
             })
             .catch((error) => {
@@ -77,7 +77,7 @@ const loginUserSuccess = (dispatch, user, loginValue) => {
         //         });
         // })
 
-    Actions.main({type: 'reset'});
+        dispatch(NavigationActions.navigate({ routeName: 'MainScreen'}));
 };
 
 const loginUserFailure = (dispatch, error) => {
@@ -85,4 +85,12 @@ const loginUserFailure = (dispatch, error) => {
         type: LOGIN_USER_FAILED,
         error
     });
+};
+
+export const logoutUser = () => {
+    return (dispatch) => {
+        firebase.auth().signOut();
+        AsyncStorage.removeItem(StorageConfig.userDataKey);
+        dispatch(NavigationActions.navigate({ routeName: 'AuthScreen' }));
+    }
 };

@@ -5,14 +5,34 @@ import { createStore,
          applyMiddleware }  from 'redux';
 import ReduxThunk           from 'redux-thunk';
 import firebase             from 'firebase';
-import { Actions }          from 'react-native-router-flux';
+import { addNavigationHelpers } from 'react-navigation';
 
-import reducers             from './reducers';
+import reducers  from './reducers';
+import Navigator from './Navigator';
 
-import Router from './Router';
 import { FirebaseConfig } from './config';
 
 firebase.initializeApp(FirebaseConfig);
+
+
+
+const Router = ({dispatch, nav}) => (
+    <Navigator
+        navigation={addNavigationHelpers({
+            dispatch,
+            state: nav
+        })} />
+);
+
+const mapStateToProps = (state) => {
+    return { nav: state.nav}
+};
+
+const RouterWithNav = connect(mapStateToProps)(Router);
+
+
+
+
 
 class App extends Component {
     constructor(props) {
@@ -22,7 +42,7 @@ class App extends Component {
         reduxStore = createStore(reducers, {}, applyMiddleware(ReduxThunk));
         return (
             <Provider store={ reduxStore }>
-                <Router />
+                <RouterWithNav />
             </Provider>
         );
     }

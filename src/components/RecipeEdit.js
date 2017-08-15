@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Actions } from 'react-native-router-flux';
 
 import { updateRecipe, deleteRecipe } from '../actions';
 
@@ -21,7 +20,6 @@ class RecipeEdit extends Component {
                 {text: 'Cancel', onPress: () => {}},
                 {text: 'Delete', onPress: () => { this.props.deleteRecipe(this.props.uid); }}
             ]);
-        // Stuff
     }
     renderButtons() {
         if(this.props.error && this.props.error != '') {
@@ -31,9 +29,8 @@ class RecipeEdit extends Component {
         } else {
             return (
                 <CardSection>
-                    <Button onPress={this.onSavePress.bind(this)}>Save</Button>
                     <Button onPress={this.onDeletePress.bind(this)}>Delete</Button>
-                    <Button onPress={() => Actions.pop()}>Cancel</Button>
+                    <Button onPress={this.onSavePress.bind(this)}>Save</Button>
                 </CardSection>
             );
         }
@@ -56,11 +53,11 @@ const styles = {
     }
 };
 
-const mapStateToProps = ({recipeForm, recipes}) => {
+const mapStateToProps = ({recipeForm, recipes, nav}) => {
     const { uid } = recipes.currentRecipe;
     const { name, directions, ingredients, error, loading } = recipeForm;
 
-    return { name, directions, ingredients, uid };
+    return { name, directions, ingredients, uid, nav };
 };
 
 export default connect(mapStateToProps, { updateRecipe, deleteRecipe })(RecipeEdit);
