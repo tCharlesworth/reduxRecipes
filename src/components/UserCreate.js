@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 import { userFormUpdate, createUser } from '../actions';
 import { connect } from 'react-redux';
-// import { Actions } from 'react-native-router-flux';
 
 import { View, Text } from 'react-native';
 import { AsyncStorage } from 'react-native';
@@ -13,9 +12,6 @@ class SignupForm extends Component {
     onCreateUser() {
         const { email, password, username } = this.props;
         this.props.createUser({email, password, username});
-    }
-    onLoginPress() {
-        // this.props.navigation.navigate('Login');
     }
     renderError() {
         if(this.props.error != '') {
@@ -32,8 +28,6 @@ class SignupForm extends Component {
         } else {
             return (
                 <CardSection>
-                    <Button onPress={this.onLoginPress}>Login</Button>
-                    <Text style={{alignSelf: 'center'}}>or</Text>
                     <Button onPress={this.onCreateUser.bind(this)}>Signup</Button>
                 </CardSection>
             );

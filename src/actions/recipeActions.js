@@ -5,10 +5,10 @@ import { RECIPE_FETCH_SUCCESS, CREATE_RECIPE_SUCCESS, CREATE_RECIPE_ERROR, CREAT
         DELETE_RECIPE_STARTED, DELETE_RECIPE_SUCCESS, DELETE_RECIPE_ERROR } from './types';
 
 export const recipesFetch = () => {
-    // const { currentUser } = firebase.auth();
-    const currentUser = {
-        uid: 'Xq1gXKt2zFgKk7qSPQaPubL5rzB2'
-    };
+    const { currentUser } = firebase.auth();
+    // const currentUser = {
+    //     uid: 'Xq1gXKt2zFgKk7qSPQaPubL5rzB2'
+    // };
     return (dispatch) => {
         firebase.database().ref(`/users/${currentUser.uid}/recipes/`)
             .on('value', snapshot => {
