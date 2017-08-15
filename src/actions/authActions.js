@@ -77,7 +77,7 @@ const loginUserSuccess = (dispatch, user, loginValue) => {
         //         });
         // })
 
-    Actions.main({type: 'reset'});
+    Actions.drawer({type: 'reset'});
 };
 
 const loginUserFailure = (dispatch, error) => {

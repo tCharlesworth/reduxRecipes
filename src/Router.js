@@ -8,6 +8,7 @@ import RecipeList   from './components/RecipeList';
 import UserCreate   from './components/UserCreate';
 import LoginForm    from './components/LoginForm';
 import Splashscreen from './components/Splashscreen';
+import NavMenu      from './components/NavMenu';
 
 import firebase         from 'firebase';
 import { AsyncStorage } from 'react-native';
@@ -22,21 +23,18 @@ const onSignOut = () => {
 const RouterComponent = () => {
     return (
         <Router sceneStyle={{ paddingTop: 60 }}>
-            <Scene key="auth" initial>
-                <Scene key="loading" hideNavBar component={ Splashscreen } title="Splashscreen" />
-                <Scene key="login"  component={ LoginForm } title="Login" />
-                <Scene key="signup" component={ UserCreate } title="Signup" />
-            </Scene>
-            <Scene key="main">
-                <Scene 
-                    key="list" 
-                    component={ RecipeList } 
-                    title="Recipe List"
-                    rightTitle="New"
-                    onRight={ () => Actions.recipeCreate() }
-                    leftTitle="Logout"
-                    onLeft={ () => onSignOut() } />
-                <Scene key="recipeCreate" component={ RecipeCreate } title="New Recipe" />
+            <Scene key="root">
+                <Scene key="auth" initial>
+                    <Scene key="loading" initial hideNavBar component={ Splashscreen } title="Splashscreen" />
+                    <Scene key="login"  component={ LoginForm } title="Login" />
+                    <Scene key="signup" component={ UserCreate } title="Signup" />
+                </Scene>
+                <Scene key="drawer" drawer contentComponent={NavMenu} hideNavBar>
+                    <Scene key="main">
+                        <Scene initial key="list" component={ RecipeList } title="Recipe List" />
+                        <Scene key="recipeCreate" component={ RecipeCreate } title="New Recipe" />
+                    </Scene>
+                </Scene>
                 <Scene 
                     key="recipeView" 
                     component={ RecipeView } 
