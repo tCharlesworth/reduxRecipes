@@ -5,6 +5,7 @@ export const LOGIN_PASSWORD_CHANGED = 'password_changed';
 export const LOGIN_USER_SUCCESS = 'login_user_success';
 export const LOGIN_USER_FAILED  = 'login_user_failed';
 export const LOGIN_USER_STARTED = 'login_user_started';
+export const LOGIN_REMEMBER_TOGGLED = 'login_user_remember_toggle';
 
 export const USER_FORM_UPDATE    = 'user_form_update';
 export const CREATE_USER_SUCCESS = 'create_user_success';

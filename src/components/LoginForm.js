@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { Text } from 'react-native';
 import { connect } from 'react-redux';
-// import { Actions } from 'react-native-router-flux';
-import { loginEmailChanged, loginPasswordChanged, loginUser, loginUserWithToken } from '../actions';
-import { Card, CardSection, TextField, Button, Spinner } from './common';
+import { loginEmailChanged, loginPasswordChanged, loginUser, loginUserWithToken, toggleLoginRemembered } from '../actions';
+import { Card, CardSection, TextField, Button, Spinner, Checkbox } from './common';
 
 class LoginForm extends Component {
     componentWillMount() {
@@ -21,8 +20,8 @@ class LoginForm extends Component {
         this.props.loginPasswordChanged(newText);
     }
     onButtonPress() {
-        const { email, password } = this.props;
-        this.props.loginUser({email, password})
+        const { email, password, rememberMe } = this.props;
+        this.props.loginUser({email, password, rememberMe})
     }
     onSignupPress() {
         this.props.navigation.navigate('Signup');
@@ -68,6 +67,9 @@ class LoginForm extends Component {
                         placeholder="********" 
                         value={this.props.password}/>
                 </CardSection>
+                <CardSection>
+                    <Checkbox label="Stay Logged In" value={this.props.rememberMe} onValueChange={this.props.toggleLoginRemembered.bind(this, !this.props.rememberMe)} />
+                </CardSection>
                 { this.renderError() }
                 { this.renderButton() }
             </Card>
@@ -84,11 +86,11 @@ const styles = {
 };
 
 const mapStateToProps = (state) => {
-    const { email, password, user, error, loading } = state.auth;
+    const { email, password, user, error, loading, rememberMe } = state.auth;
 
-    return { email, password, user, error, loading };
+    return { email, password, user, error, loading, rememberMe };
 }
 
 export default connect(mapStateToProps, { 
-    loginEmailChanged, loginPasswordChanged, loginUser, loginUserWithToken
+    loginEmailChanged, loginPasswordChanged, loginUser, loginUserWithToken, toggleLoginRemembered
 })(LoginForm);

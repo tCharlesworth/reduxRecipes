@@ -1,5 +1,5 @@
 import { 
-    LOGIN_EMAIL_CHANGED, LOGIN_PASSWORD_CHANGED, LOGIN_USER_SUCCESS, LOGIN_USER_FAILED, LOGIN_USER_STARTED } from './types';
+    LOGIN_EMAIL_CHANGED, LOGIN_PASSWORD_CHANGED, LOGIN_USER_SUCCESS, LOGIN_USER_FAILED, LOGIN_USER_STARTED, LOGIN_REMEMBER_TOGGLED } from './types';
 import { NavigationActions } from 'react-navigation';
 import firebase from 'firebase';
 import { AsyncStorage } from 'react-native';
@@ -19,11 +19,11 @@ export const loginPasswordChanged = (pword) => {
     };
 };
 
-export const loginUser = ({ email, password }) => {
+export const loginUser = ({ email, password, rememberMe }) => {
     return (dispatch) => {
         dispatch({ type: LOGIN_USER_STARTED });
         firebase.auth().signInWithEmailAndPassword(email, password)
-            .then(user => { loginUserSuccess(dispatch, user, password) })
+            .then(user => { loginUserSuccess(dispatch, user, password, rememberMe) })
             .catch((err) => { loginUserFailure(dispatch, err) });
     };
 };
@@ -59,25 +59,27 @@ export const loginUserWithToken = () => {
     }
 };
 
-const loginUserSuccess = (dispatch, user, loginValue) => {
+const loginUserSuccess = (dispatch, user, loginValue, rememberUser) => {
     dispatch({
         type: LOGIN_USER_SUCCESS,
         payload: user
     });
 
     // Save the users information to AsyncStorage for automatic login in the future
-    const { email, uid } = user;
-    const newUser = { email, uid , loginValue };
-    console.log("SAVING: ", newUser);
-    AsyncStorage.setItem(StorageConfig.userDataKey, JSON.stringify(newUser))
-        // .then(()=> {
-        //     AsyncStorage.getItem(StorageConfig.userDataKey)
-        //         .then((data) => {
-        //             console.log("SAVED: ", JSON.parse(data));
-        //         });
-        // })
+    if(rememberUser) {
+        const { email, uid } = user;
+        const newUser = { email, uid , loginValue };
+        console.log("SAVING: ", newUser);
+        AsyncStorage.setItem(StorageConfig.userDataKey, JSON.stringify(newUser))
+            // .then(()=> {
+            //     AsyncStorage.getItem(StorageConfig.userDataKey)
+            //         .then((data) => {
+            //             console.log("SAVED: ", JSON.parse(data));
+            //         });
+            // })
+    } else { console.log('DONT REMEMBER'); }
 
-        dispatch(NavigationActions.navigate({ routeName: 'MainScreen'}));
+    dispatch(NavigationActions.navigate({ routeName: 'MainScreen'}));
 };
 
 const loginUserFailure = (dispatch, error) => {
@@ -93,4 +95,11 @@ export const logoutUser = () => {
         AsyncStorage.removeItem(StorageConfig.userDataKey);
         dispatch(NavigationActions.navigate({ routeName: 'AuthScreen' }));
     }
+};
+
+export const toggleLoginRemembered = (newValue) => {
+    return {
+        type: LOGIN_REMEMBER_TOGGLED,
+        payload: newValue
+    };
 };
