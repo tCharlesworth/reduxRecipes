@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { userFormUpdate, createUser } from '../actions';
 import { connect } from 'react-redux';
-import { Actions } from 'react-native-router-flux';
+// import { Actions } from 'react-native-router-flux';
 
 import { View, Text } from 'react-native';
 import { AsyncStorage } from 'react-native';
@@ -15,7 +15,7 @@ class SignupForm extends Component {
         this.props.createUser({email, password, username});
     }
     onLoginPress() {
-        Actions.login({type: 'reset'});
+        // this.props.navigation.navigate('Login');
     }
     renderError() {
         if(this.props.error != '') {

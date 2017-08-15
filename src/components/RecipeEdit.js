@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Actions } from 'react-native-router-flux';
+// import { Actions } from 'react-native-router-flux';
 
 import { updateRecipe, deleteRecipe } from '../actions';
 
@@ -33,7 +33,7 @@ class RecipeEdit extends Component {
                 <CardSection>
                     <Button onPress={this.onSavePress.bind(this)}>Save</Button>
                     <Button onPress={this.onDeletePress.bind(this)}>Delete</Button>
-                    <Button onPress={() => Actions.pop()}>Cancel</Button>
+                    <Button>Cancel</Button>
                 </CardSection>
             );
         }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text } from 'react-native';
 import { connect } from 'react-redux';
-import { Actions } from 'react-native-router-flux';
+// import { Actions } from 'react-native-router-flux';
 import { loginEmailChanged, loginPasswordChanged, loginUser, loginUserWithToken } from '../actions';
 import { Card, CardSection, TextField, Button, Spinner } from './common';
 
@@ -25,7 +25,7 @@ class LoginForm extends Component {
         this.props.loginUser({email, password})
     }
     onSignupPress() {
-        Actions.signup({type: 'reset'});
+        this.props.navigation.navigate('Signup');
     }
     renderError() {
         if( this.props.error != '' ) {

@@ -1,5 +1,5 @@
 import firebase from 'firebase';
-import { Actions } from 'react-native-router-flux';
+// import { Actions } from 'react-native-router-flux';
 import { USER_FORM_UPDATE, CREATE_USER_STARTED, CREATE_USER_SUCCESS, CREATE_USER_FAILURE } from './types';
 
 export const userFormUpdate = (prop, value) => {
@@ -28,7 +28,7 @@ const createUserSuccess = (dispatch, userData) => {
         payload: {email, uid}
     });
 
-    Actions.main();
+    //***************XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX*************** */
 };
 
 const createUserFailure = (dispatch, error) => {

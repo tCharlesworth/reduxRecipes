@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Actions } from 'react-native-router-flux';
+// import { Actions } from 'react-native-router-flux';
 import { View, Text, TouchableHighlight } from 'react-native';
 
 import { setCurrentRecipe } from '../actions';
@@ -9,7 +9,8 @@ import { CardSection } from './common';
 
 class RecipeListItem extends Component {
     onPressHandler() {
-        Actions.recipeView({recipe: this.props.recipe});
+        //***************XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX*************** */
+        console.log("PARAMATERS!: ", this.props)
         this.props.setCurrentRecipe(this.props.recipe);
     }
     render() {
@@ -38,4 +39,8 @@ const styles = {
     }
 };
 
-export default connect(null, { setCurrentRecipe })(RecipeListItem);
+const mapStateToProps = ({ nav }) => {
+    return { nav };
+}
+
+export default connect(mapStateToProps, { setCurrentRecipe })(RecipeListItem);

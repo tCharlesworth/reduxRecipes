@@ -1,6 +1,6 @@
 import { 
     LOGIN_EMAIL_CHANGED, LOGIN_PASSWORD_CHANGED, LOGIN_USER_SUCCESS, LOGIN_USER_FAILED, LOGIN_USER_STARTED } from './types';
-import { Actions } from 'react-native-router-flux';
+// import { Actions } from 'react-native-router-flux';
 import firebase from 'firebase';
 import { AsyncStorage } from 'react-native';
 import { StorageConfig } from '../config';
@@ -46,11 +46,11 @@ export const loginUserWithToken = () => {
                         .catch((error) => {
                             console.log('error using user token.', error);
                             // Could not login. Redirect to login form.
-                            Actions.login({type: 'reset'});
+                            //***************XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX*************** */
                         });
                 } else {
                     // First signin still needed. Route to the Signup Page
-                    Actions.signup({type: 'reset'});
+                    //***************XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX*************** */
                 }
             })
             .catch((error) => {
@@ -77,7 +77,7 @@ const loginUserSuccess = (dispatch, user, loginValue) => {
         //         });
         // })
 
-    Actions.main({type: 'reset'});
+    //***************XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX*************** */
 };
 
 const loginUserFailure = (dispatch, error) => {
