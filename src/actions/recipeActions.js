@@ -6,9 +6,6 @@ import { RECIPE_FETCH_SUCCESS, CREATE_RECIPE_SUCCESS, CREATE_RECIPE_ERROR, CREAT
 
 export const recipesFetch = () => {
     const { currentUser } = firebase.auth();
-    // const currentUser = {
-    //     uid: 'Xq1gXKt2zFgKk7qSPQaPubL5rzB2'
-    // };
     return (dispatch) => {
         firebase.database().ref(`/users/${currentUser.uid}/recipes/`)
             .on('value', snapshot => {
@@ -46,8 +43,8 @@ export const updateRecipe = ({name, ingredients, directions, uid}) => {
         firebase.database().ref(`/users/${currentUser.uid}/recipes/${uid}`)
             .set({name, ingredients, directions})
             .then(()=>{ 
-                dispatch({type: UPDATE_RECIPE_SUCCESS});
-                //***************XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX*************** */
+                dispatch({type: UPDATE_RECIPE_SUCCESS, payload: {name, ingredients, directions, uid}});
+                dispatch(NavigationActions.reset({ index: 1, actions: [NavigationActions.navigate({ routeName: 'RecipeList' }), NavigationActions.navigate({ routeName: 'RecipeDetail', params: { name }})] }));
             })
             .catch((err)=>{ dispatch({type: UPDATE_RECIPE_ERROR, payload: err}); });
     };

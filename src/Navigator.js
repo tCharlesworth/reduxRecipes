@@ -22,9 +22,16 @@ const RecipeStack = StackNavigator({
     RecipeDetail: {
         screen: RecipeView,
         navigationOptions: ({navigation}) => ({
-                title: `${navigation.state.params.name}`
+                title: `${navigation.state.params.name}`,
+                headerRight: <Button title="Edit" onPress={()=>navigation.navigate('RecipeEdit')} />
             })
+        },
+    RecipeEdit: {
+        screen: RecipeEdit,
+        navigationOptions: {
+            title: "Edit Recipe"
         }
+    }
 });
 
 const MainNavigator = DrawerNavigator({

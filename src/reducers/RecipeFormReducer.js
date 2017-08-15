@@ -20,7 +20,6 @@ export default (state = INITIAL_STATE, action) => {
         case UPDATE_RECIPE_STARTED:
             return { ...state, loading: true };
         case UPDATE_RECIPE_SUCCESS:
-            //***************XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX*************** */
             return INITIAL_STATE;
         case UPDATE_RECIPE_ERROR:
             return { ...state, error: 'Error Saving Recipe'};
