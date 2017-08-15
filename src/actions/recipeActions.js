@@ -72,7 +72,7 @@ export const deleteRecipe = (uid) => {
             .remove()
             .then(() => {
                 dispatch({type: DELETE_RECIPE_SUCCESS});
-                //***************XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX*************** */
+                dispatch(NavigationActions.reset({index: 0, actions: [NavigationActions.navigate({ routeName: 'RecipeList' }) ]}));
             })
             .catch((error) => dispatch({type: DELETE_RECIPE_ERROR, payload: error}));
     };
