@@ -4,6 +4,7 @@ export * from './CardSection';
 export * from './Checkbox';
 export * from './Spinner';
 export * from './SubHeading';
+export * from './TextButton';
 export * from './TextField';
 export * from './ExpandingTextField';
 export * from './LargeTextField';
