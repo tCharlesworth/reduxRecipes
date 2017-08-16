@@ -77,9 +77,9 @@ const loginUserSuccess = (dispatch, user, loginValue, rememberUser) => {
             //             console.log("SAVED: ", JSON.parse(data));
             //         });
             // })
-    } else { console.log('DONT REMEMBER'); }
+    }
 
-    dispatch(NavigationActions.navigate({ routeName: 'MainScreen'}));
+    dispatch(NavigationActions.reset({index: 0, actions: [NavigationActions.navigate({ routeName: 'MainScreen'})]} ));
 };
 
 const loginUserFailure = (dispatch, error) => {

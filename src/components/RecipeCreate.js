@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { recipeCreate, clearRecipeForm } from '../actions';
 
-import { ScrollView, Text } from 'react-native';
+import { ScrollView, Text, Keyboard } from 'react-native';
 import { Card, Button, CardSection, Spinner } from './common';
 import RecipeForm from './RecipeForm';
 
@@ -13,6 +13,7 @@ class RecipeCreate extends Component {
     }
 
     onRecipeCreate() {
+        Keyboard.dismiss();
         this.props.recipeCreate(this.props.name, this.props.ingredients, this.props.directions);
     }
 

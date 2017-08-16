@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { userFormUpdate, createUser } from '../actions';
 import { connect } from 'react-redux';
 
-import { View, Text } from 'react-native';
+import { View, Text, Keyboard } from 'react-native';
 import { AsyncStorage } from 'react-native';
 import { Card, CardSection, TextField, Spinner, Button, Checkbox } from './common';
 import UserForm from './UserForm';
@@ -11,6 +11,7 @@ import UserForm from './UserForm';
 class SignupForm extends Component {
     onCreateUser() {
         const { email, password, username } = this.props;
+        Keyboard.dismiss();
         this.props.createUser({email, password, username});
     }
     renderError() {

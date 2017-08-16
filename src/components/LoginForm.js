@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
+import { Text, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import { loginEmailChanged, loginPasswordChanged, loginUser, loginUserWithToken, toggleLoginRemembered } from '../actions';
 import { Card, CardSection, TextField, Button, Spinner, Checkbox } from './common';
@@ -21,6 +21,7 @@ class LoginForm extends Component {
     }
     onButtonPress() {
         const { email, password, rememberMe } = this.props;
+        Keyboard.dismiss()
         this.props.loginUser({email, password, rememberMe})
     }
     onSignupPress() {
