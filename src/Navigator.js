@@ -11,6 +11,8 @@ import UserCreate   from './components/UserCreate';
 import LoginForm    from './components/LoginForm';
 import Logout       from './components/Logout';
 import Splashscreen from './components/Splashscreen';
+import GroupsHome   from './components/GroupsHome';
+import GroupSearch  from './components/GroupSearch';
 
 const RecipeStack = StackNavigator({
     RecipeList: {
@@ -34,6 +36,21 @@ const RecipeStack = StackNavigator({
     }
 });
 
+const GroupsStack = StackNavigator({
+    GroupsHome: {
+        screen: GroupsHome,
+        navigationOptions: {
+            title: "Groups"
+        }
+    },
+    GroupSearch: {
+        screen: GroupSearch,
+        navigationOptions: {
+            title: "Find a Group"
+        }
+    }
+});
+
 const MainNavigator = DrawerNavigator({
     Recipes: { screen: 
         RecipeStack, 
@@ -42,6 +59,10 @@ const MainNavigator = DrawerNavigator({
     NewRecipe: { 
         screen: RecipeCreate, 
         drawerLabel: "New Recipe" 
+    },
+    Groups: {
+        screen: GroupsStack,
+        drawerLabel: "Groups"
     },
     Logout: {
         screen: Logout,

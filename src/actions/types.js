@@ -29,3 +29,12 @@ export const UPDATE_RECIPE_SUCCESS = 'update_recipe_success';
 export const DELETE_RECIPE_STARTED = 'delete_recipe_started';
 export const DELETE_RECIPE_SUCCESS = 'delete_recipe_success';
 export const DELETE_RECIPE_ERROR   = 'delete_recipe_error';
+
+export const GROUPS_SEARCH_STARTED = 'groups_search_started';
+export const GROUPS_SEARCH_SUCCESS = 'groups_search_success';
+export const GROUPS_SEARCH_FAILURE = 'groups_search_failure';
+export const GROUPS_SEARCH_UPDATE  = 'groups_search_update';
+
+export const GROUPS_LOAD_STARTED = 'groups_load_started';
+export const GROUPS_LOAD_SUCCESS = 'groups_load_success';
+export const GROUPS_LOAD_FAILURE = 'groups_load_failure';

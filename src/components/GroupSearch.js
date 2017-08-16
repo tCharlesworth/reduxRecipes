@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View, ScrollView } from 'react-native';
 import { Button, TextField } from './common';
+import { groupSearchUpdate } from '../actions';
 
 class GroupSearch extends Component {
   onSearchPress() {
@@ -48,7 +49,7 @@ class GroupSearch extends Component {
     );
   }
   render() {
-    if(this.props.loading) {
+    if(this.props.searching) {
       return this.renderLoading();
     } else if (this.props.results) {
       return this.renderResults();
@@ -58,9 +59,9 @@ class GroupSearch extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return state;
-  // return { loading, results}
+const mapStateToProps = ({groups}) => {
+  const { searching, results, searchTerms } = groups;
+  return { searching, results, searchTerms };
 };
 
-export default connect(mapStateToProps)(GroupSearch);
+export default connect(mapStateToProps, { groupSearchUpdate })(GroupSearch);
