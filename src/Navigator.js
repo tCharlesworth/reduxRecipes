@@ -13,6 +13,7 @@ import Logout       from './components/Logout';
 import Splashscreen from './components/Splashscreen';
 import GroupsHome   from './components/GroupsHome';
 import GroupSearch  from './components/GroupSearch';
+import GroupCreate  from './components/GroupCreate.js';
 
 const RecipeStack = StackNavigator({
     RecipeList: {
@@ -47,6 +48,12 @@ const GroupsStack = StackNavigator({
         screen: GroupSearch,
         navigationOptions: {
             title: "Find a Group"
+        }
+    },
+    GroupCreate: {
+        screen: GroupCreate,
+        navigationOptions: {
+            title: "Create A Group"
         }
     }
 });

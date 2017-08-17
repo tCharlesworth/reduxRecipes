@@ -5,7 +5,8 @@ import UserFormReducer     from './UserFormReducer';
 import AuthReducer       from './AuthReducer';
 import RecipeFormReducer from './RecipeFormReducer';
 import NavReducer        from './NavReducer';
-import GroupsReducer     from './GroupsReducer.js';
+import GroupsReducer     from './GroupsReducer';
+import GroupFormReducer  from './GroupFormReducer';
 
 export default combineReducers({
     recipes: RecipeReducer,
@@ -13,5 +14,6 @@ export default combineReducers({
     auth: AuthReducer,
     recipeForm: RecipeFormReducer,
     navigation: NavReducer,
-    groups: GroupsReducer
+    groups: GroupsReducer,
+    groupForm: GroupFormReducer
 });
