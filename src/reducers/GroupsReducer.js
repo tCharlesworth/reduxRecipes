@@ -1,4 +1,4 @@
-import { GROUPS_SEARCH_STARTED, GROUPS_SEARCH_SUCCESS, GROUPS_SEARCH_FAILURE } from '../actions/types';
+import { GROUPS_SEARCH_STARTED, GROUPS_SEARCH_SUCCESS, GROUPS_SEARCH_FAILURE, GROUPS_SEARCH_UPDATE } from '../actions/types';
 
 const INITIAL_STATE = { usersGroups: [], searching: false, searchResults: null };
 
