@@ -11,7 +11,12 @@ export const loadUserGroups = () => {
 
 export const searchAllGroups = (searchTerms) => {
     return (dispatch) => {
-        dispatch({type: GROUPS_SEARCH_STARTED});
+        if(searchTerms) {
+            dispatch({type: GROUPS_SEARCH_STARTED});
+            // DO THE SEARCH
+        } else {
+            dispatch({type: GROUPS_SEARCH_FAILURE, payload: "Please enter something to search for."});
+        }
     };
 }
 

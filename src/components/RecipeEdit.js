@@ -53,11 +53,11 @@ const styles = {
     }
 };
 
-const mapStateToProps = ({recipeForm, recipes, nav}) => {
+const mapStateToProps = ({recipeForm, recipes}) => {
     const { uid } = recipes.currentRecipe;
     const { name, directions, ingredients, error, loading } = recipeForm;
 
-    return { name, directions, ingredients, uid, nav };
+    return { name, directions, ingredients, uid };
 };
 
 export default connect(mapStateToProps, { updateRecipe, deleteRecipe })(RecipeEdit);

@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { NavigationActions } from 'react-navigation';
+import { goToPage } from '../actions';
 import { TextButton } from './common';
 import { View, Text, TouchableHighlight } from 'react-native';
 
 class GroupsHome extends Component {
+  onPressSearch() {
+    console.log('CLICK SEARCH', this.props.navigation);
+    this.props.goToPage('GroupSearch');
+  }
   renderNoGroups() {
     return (
       <View style={{alignItems: 'center', paddingTop: 60}}>
         <Text style={{fontSize: 20}}> You haven't joined any groups yet!</Text>
         <View style={{flexDirection: 'row'}}>
-          <TextButton onPress={()=> NavigationActions.navigate({routeName: 'GroupSearch'}) } styles={{fontSize: 20, color: 'blue'}}>Search</TextButton><Text style={{fontSize: 20}}> for a group or </Text>
+          <TextButton onPress={this.onPressSearch.bind(this)} styles={{fontSize: 20, color: 'blue'}}>Search</TextButton><Text style={{fontSize: 20}}> for a group or </Text>
           <TextButton styles={{fontSize: 20, color: 'blue'}}>create</TextButton><Text style={{fontSize: 20}}> one!</Text>
         </View>
       </View>
@@ -28,9 +32,9 @@ class GroupsHome extends Component {
   }
 }
 
-const mapStateToProps = ({ groups }) => {
+const mapStateToProps = ({ groups, navigation }) => {
   const { usersGroups } = groups;
-  return { usersGroups };
+  return { usersGroups, navigation };
 };
 
-export default connect(mapStateToProps)(GroupsHome);
+export default connect(mapStateToProps, { goToPage })(GroupsHome);

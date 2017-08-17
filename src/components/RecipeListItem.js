@@ -39,8 +39,4 @@ const styles = {
     }
 };
 
-const mapStateToProps = ({ nav }) => {
-    return { nav };
-}
-
-export default connect(mapStateToProps, { setCurrentRecipe })(RecipeListItem);
+export default connect(null, { setCurrentRecipe })(RecipeListItem);

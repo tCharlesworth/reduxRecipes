@@ -16,16 +16,16 @@ firebase.initializeApp(FirebaseConfig);
 
 
 
-const Router = ({dispatch, nav}) => (
+const Router = ({dispatch, navigation}) => (
     <Navigator
         navigation={addNavigationHelpers({
             dispatch,
-            state: nav
+            state: navigation
         })} />
 );
 
 const mapStateToProps = (state) => {
-    return { nav: state.nav}
+    return { navigation: state.navigation}
 };
 
 const RouterWithNav = connect(mapStateToProps)(Router);

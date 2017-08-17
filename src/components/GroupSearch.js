@@ -1,18 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, ScrollView } from 'react-native';
-import { Button, TextField } from './common';
-import { groupSearchUpdate } from '../actions';
+import { View, ScrollView, Text } from 'react-native';
+import { Button, TextField, Card, CardSection, Spinner } from './common';
+import { groupSearchUpdate, searchAllGroups } from '../actions';
 
 class GroupSearch extends Component {
   onSearchPress() {
-    console.log("START SEARCHING");
+    console.log("START SEARCHING", this.props.searchTerms);
+    this.props.searchAllGroups(this.props.searchTerms)
+  }
+  renderError() {
+    return (
+      <View>
+        <Text>{this.props.error}</Text>
+      </View>
+    );
   }
   renderLoading() {
     return (
       <View>
-        <Text>Searching</Text>
-        <Spinner />
+          <Text style={{alignSelf: 'center', padding: 10, margin: 10}}>Searching</Text>
+          <Spinner />
       </View>
     );
   }
@@ -49,7 +57,12 @@ class GroupSearch extends Component {
     );
   }
   render() {
-    if(this.props.searching) {
+    if(this.props.searchError) {
+      return (<View>
+        {this.renderError()}
+        {this.renderTerms()}
+      </View>);
+    } else if (this.props.searching) {
       return this.renderLoading();
     } else if (this.props.results) {
       return this.renderResults();
@@ -60,8 +73,8 @@ class GroupSearch extends Component {
 }
 
 const mapStateToProps = ({groups}) => {
-  const { searching, results, searchTerms } = groups;
-  return { searching, results, searchTerms };
+  const { searching, results, searchTerms, searchError } = groups;
+  return { searching, results, searchTerms, searchError };
 };
 
-export default connect(mapStateToProps, { groupSearchUpdate })(GroupSearch);
+export default connect(mapStateToProps, { groupSearchUpdate, searchAllGroups })(GroupSearch);

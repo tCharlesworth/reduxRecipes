@@ -12,6 +12,6 @@ export default combineReducers({
     userForm: UserFormReducer,
     auth: AuthReducer,
     recipeForm: RecipeFormReducer,
-    nav: NavReducer,
+    navigation: NavReducer,
     groups: GroupsReducer
 });
