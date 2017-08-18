@@ -7,7 +7,7 @@ import { RECIPE_FETCH_SUCCESS, CREATE_RECIPE_SUCCESS, CREATE_RECIPE_ERROR, CREAT
 export const recipesFetch = () => {
     const { currentUser } = firebase.auth();
     return (dispatch) => {
-        firebase.database().ref(`/users/${currentUser.uid}/recipes/`)
+        firebase.database().ref(`/userRecipes/${currentUser.uid}/`)
             .on('value', snapshot => {
                 dispatch({type: RECIPE_FETCH_SUCCESS, payload: snapshot.val()});
             })
@@ -19,10 +19,10 @@ export const recipeCreate = ( name, ingredients, directions) => {
     const { currentUser } = firebase.auth();
     return (dispatch) => {
         dispatch({type: CREATE_RECIPE_STARTED});
-        firebase.database().ref(`/users/${currentUser.uid}/recipes`)
+        firebase.database().ref(`/userRecipes/${currentUser.uid}/`)
             .push({ name, ingredients, directions })
             .then(()=>{ 
-                dispatch({type: CREATE_RECIPE_SUCCESS}); 
+                dispatch({type: CREATE_RECIPE_SUCCESS});
                 dispatch(NavigationActions.navigate({ routeName: 'RecipeList'}));
             })
             .catch((error)=>{ dispatch({type: CREATE_RECIPE_ERROR, payload: error})});
@@ -40,7 +40,7 @@ export const updateRecipe = ({name, ingredients, directions, uid}) => {
     const { currentUser } = firebase.auth();
     return (dispatch) => {
         dispatch({type: UPDATE_RECIPE_STARTED});
-        firebase.database().ref(`/users/${currentUser.uid}/recipes/${uid}`)
+        firebase.database().ref(`/userRecipes/${currentUser.uid}/${uid}`)
             .set({name, ingredients, directions})
             .then(()=>{ 
                 dispatch({type: UPDATE_RECIPE_SUCCESS, payload: {name, ingredients, directions, uid}});
@@ -62,13 +62,13 @@ export const setCurrentRecipe = ({name, ingredients, directions, uid}) => {
 
 export const clearRecipeForm = () => {
     return { type: CREATE_RECIPE_CLEAR };
-}
+};
 
 export const deleteRecipe = (uid) => {
     const { currentUser } = firebase.auth();
     return (dispatch) => {
         dispatch({type: DELETE_RECIPE_STARTED});
-        firebase.database().ref(`/users/${currentUser.uid}/recipes/${uid}`)
+        firebase.database().ref(`/userRecipes/${currentUser.uid}/${uid}`)
             .remove()
             .then(() => {
                 dispatch({type: DELETE_RECIPE_SUCCESS});
@@ -76,4 +76,4 @@ export const deleteRecipe = (uid) => {
             })
             .catch((error) => dispatch({type: DELETE_RECIPE_ERROR, payload: error}));
     };
-}
+};

@@ -40,5 +40,8 @@ export const GROUPS_LOAD_SUCCESS = 'groups_load_success';
 export const GROUPS_LOAD_FAILURE = 'groups_load_failure';
 
 export const GROUP_FORM_UPDATE = 'group_form_update';
+export const GROUP_CREATE_STARTED = 'group_create_started';
+export const GROUP_CREATE_SUCCESS = 'group_create_success';
+export const GROUP_CREATE_FAILURE = 'group_create_failure';
 
 export const NAVIGATE_TO_PAGE = 'navigate_to_page';

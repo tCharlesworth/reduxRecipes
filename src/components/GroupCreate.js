@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { groupFormUpdate } from '../actions';
-import { Card, CardSection, TextField, Checkbox, Button } from './common';
+import { groupFormUpdate, createGroup } from '../actions';
+import { Card, CardSection, TextField, Checkbox, Button, Spinner } from './common';
 import { View, Text } from 'react-native';
 
 class GroupCreate extends Component {
+  onCreateGroup() {
+    const {name, isPrivate, password} = this.props;
+    this.props.createGroup(name, isPrivate, password);
+  }
   renderPassword() {
     if(this.props.isPrivate) {
       return (
@@ -34,7 +38,7 @@ class GroupCreate extends Component {
     } else {
       return (
         <CardSection>
-          <Button>Create</Button>
+          <Button onPress={this.onCreateGroup.bind(this)}>Create</Button>
         </CardSection>
       );
     }
@@ -71,4 +75,4 @@ const mapStateToProps = ({ groupForm }) => {
   return { name, isPrivate, password, loading, error };
 };
 
-export default connect(mapStateToProps, { groupFormUpdate })(GroupCreate);
+export default connect(mapStateToProps, { groupFormUpdate, createGroup })(GroupCreate);

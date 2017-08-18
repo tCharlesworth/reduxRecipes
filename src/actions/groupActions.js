@@ -1,6 +1,6 @@
 import { GROUPS_LOAD_STARTED, GROUPS_LOAD_SUCCESS, GROUPS_LOAD_FAILURE,
          GROUPS_SEARCH_STARTED, GROUPS_SEARCH_SUCCESS, GROUPS_SEARCH_FAILURE, GROUPS_SEARCH_UPDATE,
-         GROUP_FORM_UPDATE } from './types';
+         GROUP_FORM_UPDATE, GROUP_CREATE_STARTED, GROUP_CREATE_SUCCESS, GROUP_CREATE_FAILURE } from './types';
 import { NavigationActions } from 'react-navigation';
 import firebase from 'firebase';
 
@@ -32,5 +32,25 @@ export const groupFormUpdate = (prop, value) => {
     return {
         type: GROUP_FORM_UPDATE,
         payload: { prop, value }
+    };
+};
+
+export const createGroup = (name, isPrivate, password, currentUID) => {
+    const { currentUser } = firebase.auth();
+    return (dispatch) => {
+        dispatch({type: GROUP_CREATE_STARTED});
+        firebase.database().ref(`/groups`)
+            .push(({name, isPrivate, password, owner: currentUser.uid }))
+            .then((newGroupData) => {
+                // Now Edit the user record to know it has joined a group.
+                firebase.database().ref(`/users/${currentUser.uid}/groups/`)
+                    .push(newGroupData.key)
+                    .then((stuffing) => {
+                        dispatch({type: GROUP_CREATE_SUCCESS});
+                        // dispatch(NavigationActions.SOMETHING???);
+                    })
+                    .catch((err) => {dispatch({ type: GROUP_CREATE_FAILURE, payload: err })});
+            })
+            .catch((err) => { dispatch({ type: GROUP_CREATE_FAILURE, payload: err })});
     };
 };
