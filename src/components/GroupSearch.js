@@ -9,6 +9,17 @@ class GroupSearch extends Component {
     console.log("START SEARCHING", this.props.searchTerms);
     this.props.searchAllGroups(this.props.searchTerms)
   }
+  renderGroupCard(group) {
+    return (
+      <Card>
+        {/* Show  a locked Icon somewhere for private groups */}
+        <CardHeader>Group name</CardHeader>
+        <CardSection>
+          <Button>Join</Button>
+        </CardSection>
+      </Card>
+    );
+  }
   renderError() {
     return (
       <View>
@@ -27,12 +38,7 @@ class GroupSearch extends Component {
   renderResults() {
     return (
       <ScrollView>
-        <Card>
-          <CardHeader>Group Name</CardHeader>
-          <CardSection>
-            <Text>Description</Text>
-          </CardSection>
-        </Card>
+        {this.props.groups.map((group, idx) => {this.renderGroupCard(group)})}
       </ScrollView>
     );
   }
