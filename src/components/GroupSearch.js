@@ -21,11 +21,15 @@ class GroupSearch extends Component {
     );
   }
   renderError() {
-    return (
-      <View>
-        <Text>{this.props.error}</Text>
-      </View>
-    );
+    if(this.props.searchError) {
+      return (
+        <View>
+          <CardSection>
+            <Text style={styles.errorTextStyles}>{this.props.searchError}</Text>
+          </CardSection>
+        </View>
+      );
+    }
   }
   renderLoading() {
     return (
@@ -46,6 +50,7 @@ class GroupSearch extends Component {
     return (
       <View>
         <Card>
+          {this.renderError()}
           <CardSection>
             <TextField
               label="Name"
@@ -63,12 +68,7 @@ class GroupSearch extends Component {
     );
   }
   render() {
-    if(this.props.searchError) {
-      return (<View>
-        {this.renderError()}
-        {this.renderTerms()}
-      </View>);
-    } else if (this.props.searching) {
+    if (this.props.searching) {
       return this.renderLoading();
     } else if (this.props.results) {
       return this.renderResults();
@@ -81,6 +81,13 @@ class GroupSearch extends Component {
 const mapStateToProps = ({groups}) => {
   const { searching, results, searchTerms, searchError } = groups;
   return { searching, results, searchTerms, searchError };
+};
+
+const styles = {
+  errorTextStyles: {
+    color: 'red',
+    textAlign: 'center'
+  }
 };
 
 export default connect(mapStateToProps, { groupSearchUpdate, searchAllGroups })(GroupSearch);
