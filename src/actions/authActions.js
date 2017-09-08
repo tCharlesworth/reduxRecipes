@@ -79,7 +79,7 @@ const loginUserSuccess = (dispatch, user, loginValue, rememberUser) => {
             // })
     }
 
-    dispatch(NavigationActions.reset({index: 0, actions: [NavigationActions.navigate({ routeName: 'MainScreen'})]} ));
+    dispatch(NavigationActions.reset({index: 0, key: null, actions: [NavigationActions.navigate({ routeName: 'MainScreen'})]} ));
 };
 
 const loginUserFailure = (dispatch, error) => {
