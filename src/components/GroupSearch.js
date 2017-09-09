@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View, ScrollView, Text } from 'react-native';
 import { Button, TextField, Card, CardSection, Spinner } from './common';
-import { groupSearchUpdate, searchAllGroups } from '../actions';
+import { groupSearchUpdate, searchAllGroups, resetSearch } from '../actions';
 
 class GroupSearch extends Component {
   onSearchPress() {
@@ -40,11 +40,27 @@ class GroupSearch extends Component {
     );
   }
   renderResults() {
-    return (
-      <ScrollView>
-        {this.props.groups.map((group, idx) => {this.renderGroupCard(group)})}
-      </ScrollView>
-    );
+      if(this.props.searchResults && this.props.searchResults.length > 0) {
+          return (
+            <ScrollView>
+              {this.props.searchResults.map((group, idx) => {this.renderGroupCard(group)})}
+            </ScrollView>
+          );
+
+      } else {
+        return (
+          <View>
+            <Card>
+              <CardSection style={{justifyContent: 'center'}}>
+                <Text style={styles.errorTextStyles}>No groups found.</Text>
+              </CardSection>
+              <CardSection>
+                <Button onPress={this.props.resetSearch}>Retry</Button>
+              </CardSection>
+            </Card>
+          </View>
+        )
+      }
   }
   renderTerms() {
     return (
@@ -70,7 +86,7 @@ class GroupSearch extends Component {
   render() {
     if (this.props.searching) {
       return this.renderLoading();
-    } else if (this.props.results) {
+    } else if (this.props.searchResults) {
       return this.renderResults();
     } else {
       return this.renderTerms();
@@ -79,8 +95,8 @@ class GroupSearch extends Component {
 }
 
 const mapStateToProps = ({groups}) => {
-  const { searching, results, searchTerms, searchError } = groups;
-  return { searching, results, searchTerms, searchError };
+  const { searching, searchResults, searchTerms, searchError } = groups;
+  return { searching, searchResults, searchTerms, searchError };
 };
 
 const styles = {
@@ -90,4 +106,4 @@ const styles = {
   }
 };
 
-export default connect(mapStateToProps, { groupSearchUpdate, searchAllGroups })(GroupSearch);
+export default connect(mapStateToProps, { groupSearchUpdate, searchAllGroups, resetSearch })(GroupSearch);

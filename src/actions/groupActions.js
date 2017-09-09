@@ -1,5 +1,5 @@
 import { GROUPS_LOAD_STARTED, GROUPS_LOAD_SUCCESS, GROUPS_LOAD_FAILURE,
-         GROUPS_SEARCH_STARTED, GROUPS_SEARCH_SUCCESS, GROUPS_SEARCH_FAILURE, GROUPS_SEARCH_UPDATE,
+         GROUPS_SEARCH_STARTED, GROUPS_SEARCH_SUCCESS, GROUPS_SEARCH_FAILURE, GROUPS_SEARCH_UPDATE, GROUPS_SEARCH_RESET,
          GROUP_FORM_UPDATE, GROUP_CREATE_STARTED, GROUP_CREATE_SUCCESS, GROUP_CREATE_FAILURE } from './types';
 import { NavigationActions } from 'react-navigation';
 import firebase from 'firebase';
@@ -15,9 +15,19 @@ export const searchAllGroups = (searchTerms) => {
         if(searchTerms) {
             dispatch({type: GROUPS_SEARCH_STARTED});
             // DO THE SEARCH
+            firebase.database().ref('groups').orderByChild('name').equalTo(searchTerms)
+                .once('value', (results) => {
+                    dispatch({type: GROUPS_SEARCH_SUCCESS, payload: results.val() || []})
+                });
         } else {
             dispatch({type: GROUPS_SEARCH_FAILURE, payload: "Please enter something to search for."});
         }
+    };
+};
+
+export const resetSearch = () => {
+    return {
+        type: GROUPS_SEARCH_RESET
     };
 };
 

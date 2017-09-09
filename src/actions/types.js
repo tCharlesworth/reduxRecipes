@@ -34,6 +34,7 @@ export const GROUPS_SEARCH_STARTED = 'groups_search_started';
 export const GROUPS_SEARCH_SUCCESS = 'groups_search_success';
 export const GROUPS_SEARCH_FAILURE = 'groups_search_failure';
 export const GROUPS_SEARCH_UPDATE  = 'groups_search_update';
+export const GROUPS_SEARCH_RESET   = 'groups_search_reset';
 
 export const GROUPS_LOAD_STARTED = 'groups_load_started';
 export const GROUPS_LOAD_SUCCESS = 'groups_load_success';

@@ -51,7 +51,7 @@ const GroupsStack = StackNavigator({
         screen: GroupsHome,
         navigationOptions: ({navigation}) => ({
             title: "Groups",
-            headerRight: <Button title="Menu" onPress={()=>navigation.navigate('DrawerOpen')} />
+            headerLeft: <Button title="|||" onPress={()=>navigation.navigate('DrawerOpen')} />
         })
     },
     GroupSearch: {
