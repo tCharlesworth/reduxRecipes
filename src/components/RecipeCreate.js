@@ -8,9 +8,6 @@ import { Card, Button, CardSection, Spinner } from './common';
 import RecipeForm from './RecipeForm';
 
 class RecipeCreate extends Component {
-    static navigationOptions = {
-        drawerLabel: 'New Recipe'
-    }
     componentWillMount() {
         this.props.clearRecipeForm();
     }

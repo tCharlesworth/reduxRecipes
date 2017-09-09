@@ -19,10 +19,12 @@ import DrawerComponent from './components/DrawerComponent';
 const RecipeStack = StackNavigator({
     RecipeList: {
         screen: RecipeList,
-        navigationOptions: {
+        navigationOptions: ({navigation}) => ({
             title: 'Recipes',
-            drawerLabel: 'Recipes'
-        }},
+            drawerLabel: 'Recipes',
+            headerLeft: <Button title="|||" onPress={()=>navigation.navigate('DrawerOpen')} />,
+            headerRight: <Button title="+" onPress={()=>navigation.navigate('NewRecipe')} />
+        })},
     RecipeDetail: {
         screen: RecipeView,
         navigationOptions: ({navigation}) => ({
@@ -35,15 +37,22 @@ const RecipeStack = StackNavigator({
         navigationOptions: {
             title: "Edit Recipe"
         }
+    },
+    NewRecipe: { 
+        screen: RecipeCreate,
+        navigationOptions: {
+            title: "New Recipe"
+        }
     }
 });
 
 const GroupsStack = StackNavigator({
     GroupsHome: {
         screen: GroupsHome,
-        navigationOptions: {
-            title: "Groups"
-        }
+        navigationOptions: ({navigation}) => ({
+            title: "Groups",
+            headerRight: <Button title="Menu" onPress={()=>navigation.navigate('DrawerOpen')} />
+        })
     },
     GroupSearch: {
         screen: GroupSearch,
@@ -63,9 +72,6 @@ const MainNavigator = DrawerNavigator({
     Recipes: { 
         screen: RecipeStack, 
         drawerLabel: "Recipes" 
-    },
-    NewRecipe: { 
-        screen: RecipeCreate
     },
     Groups: {
         screen: GroupsStack,
