@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View, ScrollView, Text } from 'react-native';
-import { Button, TextField, Card, CardSection, Spinner } from './common';
-import { groupSearchUpdate, searchAllGroups, resetSearch } from '../actions';
+import { Button, TextField, Card, CardSection, CardHeader, Spinner } from './common';
+import { groupSearchUpdate, searchAllGroups, resetSearch, joinGroup } from '../actions';
 
 class GroupSearch extends Component {
   onSearchPress() {
@@ -13,9 +13,9 @@ class GroupSearch extends Component {
     return (
       <Card>
         {/* Show  a locked Icon somewhere for private groups */}
-        <CardHeader>Group name</CardHeader>
+        <CardHeader>{group.name}</CardHeader>
         <CardSection>
-          <Button>Join</Button>
+          <Button onPress={this.props.joinGroup(group.uid)}>Join</Button>
         </CardSection>
       </Card>
     );
@@ -40,27 +40,28 @@ class GroupSearch extends Component {
     );
   }
   renderResults() {
-      if(this.props.searchResults && this.props.searchResults.length > 0) {
-          return (
-            <ScrollView>
-              {this.props.searchResults.map((group, idx) => {this.renderGroupCard(group)})}
-            </ScrollView>
-          );
-
-      } else {
+    console.log('got results: ', this.props.searchResults);
+    if(this.props.searchResults && this.props.searchResults.length > 0) {
         return (
-          <View>
-            <Card>
-              <CardSection style={{justifyContent: 'center'}}>
-                <Text style={styles.errorTextStyles}>No groups found.</Text>
-              </CardSection>
-              <CardSection>
-                <Button onPress={this.props.resetSearch}>Retry</Button>
-              </CardSection>
-            </Card>
-          </View>
-        )
-      }
+          <ScrollView>
+            {this.props.searchResults.map((group, idx) => {return this.renderGroupCard(group)})}
+          </ScrollView>
+        );
+
+    } else {
+      return (
+        <View>
+          <Card>
+            <CardSection style={{justifyContent: 'center'}}>
+              <Text style={styles.errorTextStyles}>No groups found.</Text>
+            </CardSection>
+            <CardSection>
+              <Button onPress={this.props.resetSearch}>Retry</Button>
+            </CardSection>
+          </Card>
+        </View>
+      )
+    }
   }
   renderTerms() {
     return (
@@ -106,4 +107,4 @@ const styles = {
   }
 };
 
-export default connect(mapStateToProps, { groupSearchUpdate, searchAllGroups, resetSearch })(GroupSearch);
+export default connect(mapStateToProps, { groupSearchUpdate, searchAllGroups, resetSearch, joinGroup })(GroupSearch);

@@ -45,4 +45,8 @@ export const GROUP_CREATE_STARTED = 'group_create_started';
 export const GROUP_CREATE_SUCCESS = 'group_create_success';
 export const GROUP_CREATE_FAILURE = 'group_create_failure';
 
+export const GROUP_JOIN_STARTED = 'group_join_started';
+export const GROUP_JOIN_SUCCESS = 'group_join_success';
+export const GROUP_JOIN_FAILURE = 'group_join_failure';
+
 export const NAVIGATE_TO_PAGE = 'navigate_to_page';
