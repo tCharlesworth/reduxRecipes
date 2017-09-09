@@ -15,9 +15,10 @@ const Checkbox = ({label, onValueChange, value}) => {
 
 const styles={
     containerStyles: {
+        flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'flex-end',
+        alignItems: 'center',
         height: 40,
         paddingRight: 20,
         paddingLeft: 25
